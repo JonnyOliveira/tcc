@@ -1,12 +1,16 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:flutter/material.dart';
+import 'dart:io';
 
+import 'Home.dart';
+import 'MeusPets.dart';
 import 'Padrao/PdAppBar.dart';
 import 'Padrao/PdDrawer.dart';
 
 class Galeria extends StatefulWidget {
-  const Galeria({Key key}) : super(key: key);
+  final picker = ImagePicker();
 
   @override
   _GaleriaState createState() => _GaleriaState();
@@ -22,6 +26,25 @@ class _GaleriaState extends State<Galeria> {
     "https://static1.patasdacasa.com.br/articles/9/24/49/@/10735-curiosidades-sobre-gatos-os-felinos-sao-articles_media_mobile-2.jpg",
   ];
 
+  File _imagem;
+
+  //
+  Future _recuperarImagem(bool daCamera) async {
+    File image;
+   // File imagemSelecionada;
+    if( daCamera ){//camera
+      image = (await widget.picker.pickImage(source: ImageSource.camera)) as File;
+      //ImagePicker.pickImage(source: ImageSource.camera);
+    }else{//galeria
+      image = (await widget.picker.pickImage(source: ImageSource.gallery)) as File;
+    }
+
+   setState(() {
+      _imagem = image;
+    });
+
+  }
+  //
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,14 +55,6 @@ class _GaleriaState extends State<Galeria> {
           child: Center(
               child: Column(
                 children: [
-                  Row(
-                    children: [
-                      Padding(
-                          padding: EdgeInsets.all(20),
-                          child: Text("Floki")
-                      ),
-                    ],
-                  ),
                   Padding(
                     padding: EdgeInsets.only(top: 20),
                     child: CarouselSlider.builder(
@@ -63,28 +78,66 @@ class _GaleriaState extends State<Galeria> {
                   ),
                   const SizedBox(height: 32),
                   buildIndicator(),
-                  Padding(
-                      padding: EdgeInsets.only(top: 20),
-                      child: SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.90,
-                          height: 50.0,
-                          child: ElevatedButton(
-                              onPressed: (){},
-                              child: Text(
-                                  "ADICIONAR FOTO"
-                              ),
-                              style: ButtonStyle(
-                                backgroundColor: MaterialStateProperty.all(
-                                    Color(0xff478ca0)
-                                ),
-                              )
-                          )
-                      )
-                  )
                 ],
               )
           )
-        )
+        ),
+
+        floatingActionButton: FloatingActionButton(
+          onPressed: (){
+              showModalBottomSheet<void>(
+                context: context,
+                builder: (BuildContext context) {
+                  return Container(
+                      height: 200,
+                      color: Colors.white,
+                      child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+
+                              ListTile(
+                                leading: Icon(
+                                  Icons.camera_alt,
+                                  color: Color(0xff478ca0),
+                                ),
+                                title: Text(
+                                  "Câmera",
+                                ),
+                                onTap: () {
+                                  _recuperarImagem(true);
+                                },
+                              ),
+
+                              ListTile(
+                                leading: Icon(
+                                  Icons.photo,
+                                  color: Color(0xff478ca0),
+                                ),
+                                title: Text(
+                                  "Galeria",
+                                ),
+                                onTap: () {
+                                  _recuperarImagem(false);
+                                },
+                              ),
+
+                              _imagem == null
+                                  ? Container()
+                                  : Image.file(_imagem)
+                            ],
+                          ),
+                      ),
+                    );
+                },
+              );
+
+          },
+          child: const Icon(Icons.add),
+          backgroundColor: Color(0xff478ca0)
+        ),
+
     );
   }
 

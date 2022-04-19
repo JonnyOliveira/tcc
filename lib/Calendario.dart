@@ -38,6 +38,11 @@ class _CalendarioState extends State<Calendario> {
             ),
           )
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: const Icon(Icons.add),
+          backgroundColor: Color(0xff478ca0)
+      ),
     );
   }
 }

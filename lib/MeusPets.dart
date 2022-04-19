@@ -1,4 +1,6 @@
+import 'package:flutter/src/material/floating_action_button.dart';
 import 'package:flutter/material.dart';
+import 'package:projeto_app/NovoPet.dart';
 
 import 'Padrao/PdAppBar.dart';
 import 'Padrao/PdDrawer.dart';
@@ -32,15 +34,6 @@ class _MeusPetsState extends State<MeusPets> {
                         style:
                             TextStyle(fontSize: 30, color: Color(0xff777777)),
                       ),
-                    ),
-
-                    Padding(
-                        padding: EdgeInsets.only(right: 16),
-                        child: IconButton(
-                            onPressed: () {},
-                            icon: Icon(Icons.add_circle),
-                            color: Color(0xff478ca0)
-                        )
                     ),
                   ],
                 ),
@@ -82,11 +75,19 @@ class _MeusPetsState extends State<MeusPets> {
                         title: Text("Jorge")
                     )
                 ),
-
               ],
             ),
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => NovoPet())
+            );
+          },
+        child: const Icon(Icons.add),
+          backgroundColor: Color(0xff478ca0)
       ),
     );
   }

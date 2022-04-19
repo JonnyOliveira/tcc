@@ -207,6 +207,7 @@ class _LoginState extends State<Login> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+
                       IconButton(
                         onPressed: () {
                           print("google");
@@ -215,6 +216,7 @@ class _LoginState extends State<Login> {
                         iconSize: 32,
                         color: Colors.indigo,
                       ),
+
                       IconButton(
                         onPressed: () {
                           print("facebook");
@@ -223,6 +225,7 @@ class _LoginState extends State<Login> {
                         iconSize: 32,
                         color: Colors.indigo,
                       )
+
                     ],
                   ),
                 ),

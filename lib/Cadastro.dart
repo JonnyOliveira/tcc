@@ -115,10 +115,12 @@ class _CadastroState extends State<Cadastro> {
             child: SingleChildScrollView(
                 child: Column(
                   children: [
+
                     Padding(
                         padding: EdgeInsets.only(bottom: 32),
                         child: Image.asset("images/logo.png")
                     ),
+
                     Padding(
                         padding: EdgeInsets.only(bottom: 8),
                         child: SizedBox(
@@ -141,6 +143,7 @@ class _CadastroState extends State<Cadastro> {
                           )
                         )
                     ),
+
                     Padding(
                         padding: EdgeInsets.only(bottom: 8),
                         child: SizedBox(
@@ -162,6 +165,7 @@ class _CadastroState extends State<Cadastro> {
                             )
                         )
                     ),
+
                     Padding(
                         padding: EdgeInsets.only(bottom: 8),
                         child: SizedBox(
@@ -194,6 +198,7 @@ class _CadastroState extends State<Cadastro> {
                             ),
                         )
                     ),
+
                     Padding(
                         padding: EdgeInsets.only(top: 16),
                         child: SizedBox(
@@ -218,6 +223,7 @@ class _CadastroState extends State<Cadastro> {
                             )
                         )
                     ),
+
                     Center(
                       child: Text(
                         _mensagemErro,
@@ -228,6 +234,7 @@ class _CadastroState extends State<Cadastro> {
                         ),
                       )
                     )
+
                   ],
                 )
             ),

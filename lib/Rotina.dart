@@ -27,6 +27,7 @@ class _RotinaState extends State<Rotina> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+
                     Column(
                       children: [
                         Padding(
@@ -38,6 +39,7 @@ class _RotinaState extends State<Rotina> {
                         )
                       ],
                     ),
+
                     Column(
                       children: [
                         Padding(
@@ -49,6 +51,7 @@ class _RotinaState extends State<Rotina> {
                         )
                       ],
                     ),
+
                     Column(
                       children: [
                         Padding(
@@ -58,6 +61,7 @@ class _RotinaState extends State<Rotina> {
                         Text("Medicamento"),
                       ],
                     ),
+
                   ],
                 ),
                 Row(
@@ -70,21 +74,9 @@ class _RotinaState extends State<Rotina> {
                         style: TextStyle(fontSize: 28, color: Color(0xff777777)),
                       ),
                     ),
-                    Padding(
-                        padding: EdgeInsets.only(top: 10),
-                        child: IconButton(
-                            onPressed: () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) => NovaRotina())
-                              );
-                            },
-                            iconSize: 30,
-                            icon: Icon(Icons.add_circle),
-                            color: Color(0xff478ca0)
-                        )
-                    ),
                   ],
                 ),
+
                 ListTile(
                   contentPadding: EdgeInsets.all(0),
                   leading: CircleAvatar(
@@ -93,6 +85,7 @@ class _RotinaState extends State<Rotina> {
                   title: Text("Alimentação - Diária"),
                   subtitle: Text("Ração - 08:00h"),
                 ),
+
                 ListTile(
                   contentPadding: EdgeInsets.all(0),
                   leading: CircleAvatar(
@@ -101,6 +94,7 @@ class _RotinaState extends State<Rotina> {
                   title: Text("Alimentação - Diária"),
                   subtitle: Text("Arroz e Frango - 12:00h"),
                 ),
+
                 ListTile(
                   contentPadding: EdgeInsets.all(0),
                   leading: CircleAvatar(
@@ -109,6 +103,7 @@ class _RotinaState extends State<Rotina> {
                   title: Text("Alimentação - Diária"),
                   subtitle: Text("Ração - 16:00h"),
                 ),
+
                 ListTile(
                   contentPadding: EdgeInsets.all(0),
                   leading: CircleAvatar(
@@ -117,11 +112,20 @@ class _RotinaState extends State<Rotina> {
                   title: Text("Alimentação - Diária"),
                   subtitle: Text("Arroz e Frango - 20:00h"),
                 ),
+
               ],
             )
           )
         )
-      )
+      ),
+      floatingActionButton: FloatingActionButton(onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => NovaRotina())
+            );
+          },
+        child: const Icon(Icons.add),
+        backgroundColor: Color(0xff478ca0)
+      ),
     );
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:projeto_app/NovaRotina.dart';
+import 'package:projeto_app/NovoPet.dart';
 import 'package:projeto_app/PerfilPet.dart';
 
 import 'Padrao/PdAppBar.dart';
@@ -49,63 +51,17 @@ class _HomeState extends State<Home> {
                             )
                           ],
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(32, 16, 32, 16),
-                              child: Text(
-                                "MEUS PETS",
-                                style: TextStyle(fontSize: 30, color: Color(0xff777777)),
-                              ),
-                            ),
-                            Padding(
-                                padding: EdgeInsets.only(right: 16),
-                                child: IconButton(
-                                    onPressed: () {},
-                                    icon: Icon(Icons.add_circle),
-                                    color: Color(0xff478ca0)
-                                )
-                            ),
-                          ],
-                        ),
-                        Padding(
-                            padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                            child: ListTile(
-                              leading: CircleAvatar(
-                                backgroundImage: AssetImage("images/bolt.png"),
-                              ),
-                              title: Text("Bolt"),
-                            )
-                        ),
-                        Padding(
-                            padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                            child: ListTile(
-                              leading: CircleAvatar(
-                                backgroundImage: AssetImage("images/floki.png"),
-                              ),
-                              title: Text("Floki"),
-                              onTap: () {
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) => PerfilPet())
-                                );
-                              },
-                            )
-                        ),
-                        Padding(
-                            padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                            child: ListTile(
-                                leading: CircleAvatar(
-                                  backgroundImage: AssetImage("images/jorge.png"),
-                                ),
-                                title: Text("Jorge")
-                            )
-                        ),
+
                       ],
                     )
                 )
             )
-        )
+        ),
+        floatingActionButton: FloatingActionButton(
+            onPressed: () {},
+          child: const Icon(Icons.edit),
+          backgroundColor: Color(0xff478ca0)
+        ),
     );
   }
 }
