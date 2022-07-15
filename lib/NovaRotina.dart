@@ -8,10 +8,10 @@ class NovaRotina extends StatefulWidget {
   const NovaRotina({Key key}) : super(key: key);
 
   @override
-  _RotinaState createState() => _RotinaState();
+  _NovaRotinaState createState() => _NovaRotinaState();
 }
 
-class _RotinaState extends State<NovaRotina> {
+class _NovaRotinaState extends State<NovaRotina> {
 
   TextEditingController _controllerDescricao = TextEditingController();
   TextEditingController _controllerDataInicial = TextEditingController();
@@ -29,13 +29,16 @@ class _RotinaState extends State<NovaRotina> {
     super.initState();
 
     _controllerDescricao.addListener(() => setState(() {}));
+    _controllerDataInicial.addListener(() => setState(() {}));
+    _controllerDataFinal.addListener(() => setState(() {}));
+    _controllerHora.addListener(() => setState(() {}));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBarPadrao(),
+        appBar: AppBarPadrao('Cadastro Rotina'),
         drawer: DrawerPadrao(),
         body: SingleChildScrollView(
           child: Container(
@@ -43,20 +46,21 @@ class _RotinaState extends State<NovaRotina> {
             child: Center(
                 child: Column(
                   children: [
+
                     Padding(
                         padding: EdgeInsets.only(top: 10, bottom: 10),
                         child:
                         Container(
                             width: MediaQuery.of(context).size.width * 0.90,
-                            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 2),
+                            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
                             decoration: BoxDecoration(
                               border: Border.all(color: Colors.black26, width: 1),
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(26),
                             ),
                             child: DropdownButtonHideUnderline(
                               child: DropdownButton<String>(
                                 value: _dropdownTipoRotina,
-                                borderRadius: BorderRadius.circular(10),
+                                borderRadius: BorderRadius.circular(26),
                                 onChanged: (String newValue) {
                                   setState(() {
                                     _dropdownTipoRotina = newValue;
@@ -74,18 +78,20 @@ class _RotinaState extends State<NovaRotina> {
                             )
                         )
                     ),
+
                     Padding(
                         padding: EdgeInsets.only(top: 10, bottom: 10),
                         child: Container(
                             width: MediaQuery.of(context).size.width * 0.90,
-                            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 2),
+                            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
                             decoration: BoxDecoration(
                               border: Border.all(color: Colors.black26, width: 1),
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(26),
                             ),
                             child: DropdownButtonHideUnderline(
                               child: DropdownButton<String>(
                                 value: _dropdownPeriodicidade,
+                                borderRadius: BorderRadius.circular(26),
                                 onChanged: (String newValue) {
                                   setState(() {
                                     _dropdownPeriodicidade = newValue;
@@ -103,6 +109,7 @@ class _RotinaState extends State<NovaRotina> {
                             )
                         )
                     ),
+
                     Padding(
                       padding: EdgeInsets.only(top: 10, bottom: 10),
                       child: TextField(
@@ -122,11 +129,12 @@ class _RotinaState extends State<NovaRotina> {
                                 }
                             ),
                             border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10)
+                                borderRadius: BorderRadius.circular(26)
                             )
                         ),
                       ),
                     ),
+
                     Padding(
                       padding: EdgeInsets.only(top: 10, bottom: 10),
                       child: TextField(
@@ -146,7 +154,7 @@ class _RotinaState extends State<NovaRotina> {
                                 }
                             ),
                             border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10)
+                                borderRadius: BorderRadius.circular(26)
                             )
                         ),
                         onTap: () async {
@@ -164,6 +172,7 @@ class _RotinaState extends State<NovaRotina> {
                         },
                       ),
                     ),
+
                     Padding(
                       padding: EdgeInsets.only(top: 10, bottom: 10),
                       child: TextField(
@@ -183,7 +192,7 @@ class _RotinaState extends State<NovaRotina> {
                                 }
                             ),
                             border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10)
+                                borderRadius: BorderRadius.circular(26)
                             )
                         ),
                         onTap: () async {
@@ -201,6 +210,7 @@ class _RotinaState extends State<NovaRotina> {
                         },
                       ),
                     ),
+
                     Padding(
                       padding: EdgeInsets.only(top: 10, bottom: 10),
                       child: TextField(
@@ -220,7 +230,7 @@ class _RotinaState extends State<NovaRotina> {
                                 }
                             ),
                             border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10)
+                                borderRadius: BorderRadius.circular(26)
                             )
                         ),
                         onTap: () async {
@@ -239,6 +249,7 @@ class _RotinaState extends State<NovaRotina> {
                         },
                       ),
                     ),
+
                     SwitchListTile(
                           title: Text("Receber notificações"),
                           value: _escolhaUsuarioNotificacao,
@@ -248,11 +259,12 @@ class _RotinaState extends State<NovaRotina> {
                             });
                           },
                     ),
+
                     Padding(
                         padding: EdgeInsets.only(top: 10, bottom: 10),
                         child: SizedBox(
                             width: MediaQuery.of(context).size.width * 0.90,
-                            height: 50.0,
+                            height: 55.0,
                             child: ElevatedButton(
                                 onPressed: (){},
                                 child: Text(
@@ -261,6 +273,11 @@ class _RotinaState extends State<NovaRotina> {
                                 style: ButtonStyle(
                                   backgroundColor: MaterialStateProperty.all(
                                       Color(0xff478ca0)),
+                                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(26),
+                                        )
+                                    )
                                 )
                             )
                         )

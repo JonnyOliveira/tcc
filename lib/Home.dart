@@ -19,7 +19,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBarPadrao(),
+        appBar: AppBarPadrao('Home'),
         drawer: DrawerPadrao(),
         body: SingleChildScrollView(
             child: Container(
@@ -28,13 +28,16 @@ class _HomeState extends State<Home> {
                       children: [
                         Row(
                           children: [
+
                             Padding(
                                 padding: EdgeInsets.all(32),
                                 child: Image.asset("images/perfil_tutor.png")
                             ),
+
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+
                                 Padding(
                                   padding: EdgeInsets.only(bottom: 10),
                                   child: Text(
@@ -43,10 +46,12 @@ class _HomeState extends State<Home> {
                                         TextStyle(fontSize: 22, color: Color(0xff777777)),
                                   ),
                                 ),
+
                                 Text(
                                   "(42) 99999-9999",
                                   style: TextStyle(fontSize: 15, color: Color(0xff777777)),
                                 )
+
                               ],
                             )
                           ],

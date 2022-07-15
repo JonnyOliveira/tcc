@@ -1,5 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:projeto_app/model/Pet.dart';
 
 import 'Padrao/PdAppBar.dart';
 import 'Padrao/PdDrawer.dart';
@@ -20,6 +24,8 @@ class _PetState extends State<NovoPet> {
   TextEditingController _controllerPeso = TextEditingController();
   TextEditingController _controllerDataCastracao = TextEditingController();
   TextEditingController _controllerComportamento = TextEditingController();
+  String _mensagemErroEmail = "";
+  String _mensagemErroSenha = "";
 
   String _dropdownEspecie = 'Ave';
   String _dropdownPelagem = 'Curta';
@@ -29,6 +35,62 @@ class _PetState extends State<NovoPet> {
   String _pelagem = '';
   String _sexo = '';
   String _porte = '';
+
+  _validarCampos(){
+
+    String nome = _controllerNome.text;
+    String data_nascimento = _controllerDataNascimento.text;
+    String idade = _controllerIdade.text;
+    String especie = _dropdownEspecie;
+    String raca = _controllerRaca.text;
+    String porte = _dropdownPorte;
+    String peso = _controllerPeso.text;
+    String pelagem = _dropdownPelagem;
+    String sexo = _dropdownSexo;
+    String data_castracao = _controllerDataCastracao.text;
+    String comportamento = _controllerComportamento.text;
+
+    if( nome.isNotEmpty ){
+          setState(() {
+            _mensagemErroEmail = "";
+          });
+
+          Pet pet = Pet();
+          pet.nome = nome;
+          pet.data_nascimento = data_nascimento;
+          pet.idade = idade;
+          pet.especie = especie;
+          pet.raca = raca;
+          pet.porte = porte;
+          pet.peso = peso;
+          pet.pelagem = pelagem;
+          pet.sexo = sexo;
+          pet.data_castracao = data_castracao;
+          pet.comportamento = comportamento;
+
+          _cadastrarPet( pet );
+          print('deu certo');
+
+    }else{
+        setState(() {
+          _mensagemErroEmail = "Informe o Nome";
+        });
+    }
+  }
+
+  _cadastrarPet( Pet pet ) async {
+
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp();
+    FirebaseAuth auth = FirebaseAuth.instance;
+
+    //Salvar dados do pet
+    FirebaseFirestore db = FirebaseFirestore.instance;
+
+    db.collection("pets")
+        .doc( '01' )
+        .set( pet.toMap() );
+  }
 
   @override
   void initState() {
@@ -47,7 +109,7 @@ class _PetState extends State<NovoPet> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBarPadrao(),
+        appBar: AppBarPadrao('Pet'),
         drawer: DrawerPadrao(),
         body: SingleChildScrollView(
             child: Container(
@@ -371,7 +433,7 @@ class _PetState extends State<NovoPet> {
                                 width: MediaQuery.of(context).size.width * 0.90,
                                 height: 50.0,
                                 child: ElevatedButton(
-                                    onPressed: (){},
+                                    onPressed: _validarCampos,
                                     child: Text(
                                         "SALVAR"
                                     ),

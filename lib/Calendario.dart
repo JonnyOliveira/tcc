@@ -15,7 +15,7 @@ class _CalendarioState extends State<Calendario> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarPadrao(),
+      appBar: AppBarPadrao('Calendário'),
       drawer: DrawerPadrao(),
       body: Container(
           child: Padding(

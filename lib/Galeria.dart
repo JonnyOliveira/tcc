@@ -49,7 +49,7 @@ class _GaleriaState extends State<Galeria> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBarPadrao(),
+        appBar: AppBarPadrao('Galeria'),
         drawer: DrawerPadrao(),
         body: SingleChildScrollView(
           child: Center(

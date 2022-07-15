@@ -6,6 +6,8 @@ import 'package:projeto_app/Cadastro.dart';
 import 'package:projeto_app/Home.dart';
 import 'package:projeto_app/model/Usuario.dart';
 
+import 'Padrao/PdMensagens.dart';
+
 class Login extends StatefulWidget {
   const Login({Key key}) : super(key: key);
 
@@ -18,7 +20,8 @@ class _LoginState extends State<Login> {
   TextEditingController _controllerSenha = TextEditingController();
   String senha = '';
   bool _visibilidadeSenha = false;
-  String _mensagemErro = "";
+  String _mensagemErroEmail = "";
+  String _mensagemErroSenha = "";
 
   _validarCampos(){
 
@@ -28,7 +31,7 @@ class _LoginState extends State<Login> {
     if( email.isNotEmpty && email.contains("@") ){
         if( senha.isNotEmpty ){
           setState(() {
-            _mensagemErro = "";
+            _mensagemErroEmail = "";
           });
 
           Usuario usuario = Usuario();
@@ -39,12 +42,12 @@ class _LoginState extends State<Login> {
 
         }else{
           setState(() {
-            _mensagemErro = "Senha inválida. Tente novamente.";
+            _mensagemErroSenha = "Senha inválida! \nPor favor, tente novamente.";
           });
         }
     }else{
         setState(() {
-          _mensagemErro = "E-mail inválido. Tente novamente.";
+          _mensagemErroEmail = "Endereço de E-mail não encontrado! \nPor favor, tente novamente.";
         });
     }
   }
@@ -70,7 +73,7 @@ class _LoginState extends State<Login> {
     }).catchError(( error ){
 
       setState(() {
-        _mensagemErro = "Dados Inválidos. Tente novamente!";
+        _mensagemErroSenha = "Dados Inválidos! \nPor favor, tente novamente!";
       });
 
     });
@@ -99,6 +102,7 @@ class _LoginState extends State<Login> {
     _verificarUsuarioLogado();
     super.initState();
 
+    _controllerEmail.addListener(() => setState(() {}));
     _controllerSenha.addListener(() => setState(() {}));
   }
 
@@ -121,8 +125,8 @@ class _LoginState extends State<Login> {
                 Padding(
                     padding: EdgeInsets.only(bottom: 8),
                     child: SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.92,
-                      height: 60.0,
+                      //width: MediaQuery.of(context).size.width * 0.92,
+                      //height: 60.0,
                       child: TextField(
                           controller: _controllerEmail,
                           autofocus: true,
@@ -133,18 +137,24 @@ class _LoginState extends State<Login> {
                               //filled: true,
                               //fillColor: Color(0xffecebea),
                               hintText: "E-mail",
+
+                              errorText: (_controllerSenha.text == "") ? null
+                                       : _mensagemErroEmail,
+
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(32)
                               )
                           )
+
                       )
                     )
                 ),
+
                 Padding(
                     padding: EdgeInsets.only(bottom: 24),
                     child: SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.92,
-                        height: 60.0,
+                        //width: MediaQuery.of(context).size.width * 0.92,
+                        //height: 60.0,
                         child: TextField(
                             controller: _controllerSenha,
                             obscureText: !_visibilidadeSenha,
@@ -153,6 +163,7 @@ class _LoginState extends State<Login> {
                             decoration: InputDecoration(
                                 contentPadding: EdgeInsets.fromLTRB(32, 16, 32, 16),
                                 hintText: "Senha",
+                                errorText: _controllerSenha.text == "" ? null : _mensagemErroSenha,
                                 suffixIcon: IconButton(
                                   icon: _visibilidadeSenha == false
                                       ? Icon(Icons.visibility_off)
@@ -170,6 +181,7 @@ class _LoginState extends State<Login> {
                         ),
                     )
                 ),
+
                 Padding(
                     padding: EdgeInsets.only(bottom: 16),
                     child: SizedBox(
@@ -195,12 +207,17 @@ class _LoginState extends State<Login> {
                         )
                     )
                 ),
+
                 Center(
                   child: GestureDetector(
-                    child: Text("Esqueceu a senha?"),
+                    child: Text(
+                      "Esqueceu a senha?",
+                      style: MsgAlertaPadrao(TamanhoFonte: 16.0),
+                    ),
                     onTap: () {},
                   ),
                 ),
+
                 Padding(
                   padding: EdgeInsets.only(top: 20),
                   child: Row(
@@ -229,30 +246,36 @@ class _LoginState extends State<Login> {
                     ],
                   ),
                 ),
+
                 Divider(
                   height: 35,
                   color: Colors.grey,
                   indent: 20,
                   endIndent: 20,
                 ),
+
                 Center(
                   child: GestureDetector(
                     child: Text("Cadastrar-se"),
                     onTap: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Cadastro()));
+                          MaterialPageRoute(builder: (context) => Cadastro())
+                      );
                     },
                   ),
                 ),
-                Padding(
+
+               /* Padding(
                   padding: EdgeInsets.only(top: 16),
                   child: Center(
                     child: Text(
                       _mensagemErro,
-                      style: TextStyle(color: Colors.red, fontSize: 20),
+                      textAlign: TextAlign.center,
+                      style: MsgErroPadrao(),
                     )
                   )
-                )
+                )*/
+
               ],
             )
           ),

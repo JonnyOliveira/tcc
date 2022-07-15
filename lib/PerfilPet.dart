@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_app/Calendario.dart';
 import 'package:projeto_app/Galeria.dart';
-import 'package:projeto_app/Rotina.dart';
+import 'package:projeto_app/HistoricoConsulta.dart';
+import 'package:projeto_app/HistoricoPeso.dart';
+import 'package:projeto_app/RotinaAlimentacao.dart';
 
 import 'Padrao/PdAppBar.dart';
 import 'Padrao/PdDrawer.dart';
@@ -18,7 +20,7 @@ class _PerfilPetState extends State<PerfilPet> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBarPadrao(),
+      appBar: AppBarPadrao('Pet'),
       drawer: DrawerPadrao(),
       body: SingleChildScrollView(
         child: Container(
@@ -83,7 +85,7 @@ class _PerfilPetState extends State<PerfilPet> {
                           child: GestureDetector(
                               onTap: () {
                                 Navigator.push(context,
-                                    MaterialPageRoute(builder: (context)=> Rotina())
+                                    MaterialPageRoute(builder: (context)=> RotinaAlimentacao())
                                 );
                               },
                               child: Image.asset("images/rotina.png")
@@ -117,7 +119,14 @@ class _PerfilPetState extends State<PerfilPet> {
                       children: [
                           Padding(
                             padding: EdgeInsets.only(top: 10, bottom: 5),
-                            child: Image.asset("images/historico.png"),
+                            child: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (context)=> HistoricoConsulta())
+                                  );
+                                },
+                                child: Image.asset("images/historico.png")
+                            ),
                           ),
                           Text("Histórico Médico")
                       ],

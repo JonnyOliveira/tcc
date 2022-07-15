@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'package:projeto_app/OngAnimaisAdocao.dart';
+import 'OngComoAjudar.dart';
+
 import 'Padrao/PdAppBar.dart';
 import 'Padrao/PdDrawer.dart';
 
@@ -16,7 +19,7 @@ class _OngsFavoritasState extends State<OngsFavoritas> {
     return Scaffold(
 
         backgroundColor: Colors.white,
-        appBar: AppBarPadrao(),
+        appBar: AppBarPadrao('ONGs favoritas'),
         drawer: DrawerPadrao(),
         body: SingleChildScrollView(
             child: Container(
@@ -32,30 +35,64 @@ class _OngsFavoritasState extends State<OngsFavoritas> {
                               style:
                               TextStyle(fontSize: 22, color: Color(0xff777777)),
                             ),
-
                             subtitle: Text("(42)99999-9999"),
 
                             onTap: () {
-
                               showModalBottomSheet<void>(
                                 context: context,
                                 builder: (BuildContext context) {
                                   return Container(
                                     height: 200,
-                                    color: Colors.amber,
+                                    color: Colors.white,
                                     child: Center(
+
                                       child: Column(
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         mainAxisSize: MainAxisSize.min,
                                         children: <Widget>[
-                                          const Text('ONG SOS AMIGO BICHO'),
-                                          ElevatedButton(
-                                            child: const Text('Close BottomSheet',
+
+                                          Text(
+                                            "ONG - SOS AMIGO BICHO",
                                             style:
-                                              TextStyle(fontSize: 22, color: Color(0xff777777)),
+                                            TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold,
+                                                color: Color(0xff478ca0)
                                             ),
-                                            onPressed: () => Navigator.pop(context),
+                                          ),
+
+                                          //Text('ONG SOS AMIGO BICHO'),
+
+                                          ListTile(
+                                            leading: Icon(
+                                              Icons.pets_sharp,
+                                              color: Color(0xff478ca0),
+                                            ),
+                                            title: Text(
+                                              "Animais para Adoção",
+                                            ),
+                                            onTap: () {
+                                              Navigator.push(context,
+                                                  MaterialPageRoute(builder: (context) => OngAnimaisAdocao())
+                                              );
+                                            },
+                                          ),
+
+                                          ListTile(
+                                            leading: Icon(
+                                              Icons.monetization_on_sharp,
+                                              color: Color(0xff478ca0),
+                                            ),
+                                            title: Text(
+                                              "Como Ajudar",
+                                            ),
+                                            onTap: () {
+                                              Navigator.push(context,
+                                                  MaterialPageRoute(builder: (context) => OngComoAjudar())
+                                              );
+                                            },
                                           )
+
                                         ],
                                       ),
                                     ),

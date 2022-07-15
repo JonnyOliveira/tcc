@@ -8,7 +8,7 @@ import '../Calendario.dart';
 import '../Galeria.dart';
 import '../Home.dart';
 import '../PerfilPet.dart';
-import '../Rotina.dart';
+import '../RotinaAlimentacao.dart';
 
 class DrawerPadrao extends StatefulWidget {
   const DrawerPadrao({key}) : super(key: key);
@@ -35,7 +35,7 @@ class _DrawerPadraoState extends State<DrawerPadrao> {
      }
   }
 
-  String get email => 'jonny@gmail.com';
+  String get email => 'jonnylucasoliveira@gmail.com';
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +53,8 @@ class _DrawerPadraoState extends State<DrawerPadrao> {
                     color: Colors.white,
                   )
                 ),
-                accountEmail: Text(email,
+                accountEmail: Text(
+                    email,
                     style: TextStyle(
                       color: Colors.white,
                     )
