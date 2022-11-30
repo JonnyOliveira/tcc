@@ -59,6 +59,7 @@ dependencies:
   firebase_auth: ^3.3.6 #autenticação
   firebase_storage: ^10.2.6 #armazenamento de arquivos
   cloud_firestore: ^3.1.7 #banco de dados
+  get: ^4.6.5
 
 dev_dependencies:
   flutter_test:
